@@ -4,7 +4,7 @@
   "description": "display main product info and images",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon ./server/index.js",
     "build": "webpack -d --watch",
     "seed-mongo": "node ./mongodb/seed.js",
@@ -39,8 +39,11 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "css-loader": "^2.1.0",
+    "dotenv": "^6.2.0",
+    "dotenv-expand": "^4.2.0",
     "express": "^4.16.4",
     "faker": "^4.1.0",
+    "jest": "^24.1.0",
     "mongoose": "^5.4.10",
     "morgan": "^1.9.1",
     "node-cmd": "^3.0.0",
@@ -51,6 +54,7 @@
     "react-skylight": "^0.5.1",
     "sequelize": "^4.42.1",
     "style-loader": "^0.23.1",
+    "supertest": "^3.4.2",
     "url-loader": "^1.1.2"
   }
 }

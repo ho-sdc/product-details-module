@@ -32,49 +32,44 @@ class DataStream extends Readable {
   }
 
   _read(size) {
-    let product = '';
-    //productId
-    product += this.idCount + ',';
     this.idCount++;
-    //name
-    product += faker.commerce.productName() + ',';
-    //images
+    let product = {};
+    product.name = faker.commerce.productName();
+    product.images = [];
     let imageCount = this.randInt(5, 11);
-    product += '"{';
     for (let k = 0; k < imageCount; k++) {
-      product +=
-        'https://picsum.photos/1000/1000?image=' +
-        ((this.idCount + k) % 1085) +
-        (k === imageCount - 1 ? '}",' : ',');
+      product.images.push(
+        'https://picsum.photos/1000/1000?image=' + ((this.idCount + k) % 1085)
+      );
     }
-    //sizes
-    let sizes = {};
+    product.images = '"{' + product.images.toString() + '}"';
+    product.sizes = {};
     for (let size of this.possibleSizes) {
       if (Math.random() > 0.5) {
-        sizes[size] = 1;
+        product.sizes[size] = 1;
       }
     }
-    product += '"' + JSON.stringify(sizes).replace(/"/g, '""') + '"' + ',';
-    //retailPrice
-    let retailPrice = faker.commerce.price();
-    product += retailPrice + ',';
-    //salePrice
-    product += Math.floor(retailPrice * Math.random()) + ',';
-    //reviewCount
-    product += this.randInt(30, 1000) + ',';
-    //reviewRating
-    product += Math.random() * 2.5 + 2.5 + ',';
-    //tags
-    product += '"{' + faker.commerce.department() + '}",';
-    //colors
-    let colorCount = this.randInt(1, 5);
-    product += '"{';
-    for (let k = 0; k < colorCount; k++) {
-      product += faker.commerce.color() + (k === colorCount - 1 ? '}",' : ',');
+    product.sizes =
+      '"' + JSON.stringify(product.sizes).replace(/"/g, '""') + '"';
+    product.retailPrice = faker.commerce.price();
+    product.salePrice = Math.floor(product.retailPrice * Math.random());
+    product.reviewCount = this.randInt(30, 1000);
+    product.reviewRating = Math.random() * 2.5 + 2.5;
+    let tagCount = this.randInt(1, 3);
+    product.tags = [];
+    for (let k = 0; k < tagCount; k++) {
+      product.tags.push(faker.commerce.department());
     }
-    //heartToggle
-    product += 'false';
-    this.push(product + '\n');
+    product.tags = '"{' + product.tags.toString() + '}"';
+
+    product.colors = [];
+    let colorCount = this.randInt(1, 5);
+    for (let k = 0; k < colorCount; k++) {
+      product.colors.push(faker.commerce.color());
+    }
+    product.colors = '"{' + product.colors.toString() + '}"';
+    product.heartToggle = false;
+    this.push(Object.values(product).toString() + '\n');
     if (this.idCount === 1e7) this.push(null);
   }
 }

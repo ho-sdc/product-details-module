@@ -52,7 +52,11 @@ class DataStream extends Readable {
     product.salePrice = Math.floor(product.retailPrice * Math.random());
     product.reviewCount = randInt(30, 1000);
     product.reviewRating = Math.random() * 2.5 + 2.5;
-    product.tags = faker.commerce.department().split(' ');
+    let tagCount = randInt(1, 2);
+    product.tags = [];
+    for (let k = 0; k < tagCount; k++) {
+      product.tags.push(faker.commerce.department());
+    }
     product.colors = [];
     let colorCount = randInt(1, 5);
     for (let k = 0; k < colorCount; k++) {
