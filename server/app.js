@@ -10,10 +10,11 @@ const seed = require('../postgresdb/seed');
 const router = require('./routes');
 
 const app = express();
+
 module.exports.initializeApp = async () => {
   await dbInitialize();
   await seed();
-  app.use(morgan('dev'));
+  // app.use(morgan('dev'));
   app.use(cors());
   app.use(parser.json());
   app.use(parser.urlencoded({ extended: true }));

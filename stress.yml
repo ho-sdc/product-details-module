@@ -1,0 +1,9 @@
+config:
+  target: 'http://localhost:3002'
+  phases:
+    - duration: 30
+      arrivalRate: 1000
+scenarios:
+  - flow:
+      - get:
+          url: '/abibas/product/{{$randomNumber(0,1e7)}}'

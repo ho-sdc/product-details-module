@@ -1,3 +1,4 @@
+require('newrelic');
 const { app, initializeApp } = require('./app');
 
 initializeApp().then(() =>
