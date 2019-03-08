@@ -4,7 +4,7 @@ const fs = require('fs');
 const Promise = require('bluebird');
 const { pgPool } = require('./index');
 
-module.exports = async () => {
+const seed = async () => {
   let result = await pgPool.query(
     `SELECT * 
   FROM products 
@@ -24,4 +24,6 @@ module.exports = async () => {
     fs.unlink(path.resolve(__dirname, './data.csv'), () => {});
     console.log('seeding complete, deleting csv');
   }
-}();
+};
+
+seed();
