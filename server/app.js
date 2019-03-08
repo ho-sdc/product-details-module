@@ -5,7 +5,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const { dbInitialize } = require('../postgresdb/index');
-const seed = require('../postgresdb/seed');
 
 const router = require('./routes');
 
