@@ -24,4 +24,4 @@ module.exports = async () => {
     fs.unlink(path.resolve(__dirname, './data.csv'), () => {});
     console.log('seeding complete, deleting csv');
   }
-};
+}();

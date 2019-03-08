@@ -1,7 +1,7 @@
 const fs = require('fs');
 const DataStream = require('../postgresdb/dataStream');
 
-const writeDataToFile = () => {
+module.exports = () => {
   const file = fs.createWriteStream(`./postgresdb/data.csv`);
   const data = new DataStream();
   const write = data.pipe(file);
@@ -10,5 +10,3 @@ const writeDataToFile = () => {
     write.on('error', reject);
   });
 };
-
-module.exports = writeDataToFile;

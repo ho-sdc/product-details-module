@@ -70,6 +70,7 @@ class DataStream extends Readable {
     product.colors = '"{' + product.colors.toString() + '}"';
     product.heartToggle = false;
     this.push(Object.values(product).toString() + '\n');
+    if (this.idCount % 1e6 === 0) console.log(this.idCount);
     if (this.idCount === 1e7) this.push(null);
   }
 }
