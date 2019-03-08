@@ -7,9 +7,10 @@ const generateData = require('./generateData');
 const path = require('path');
 const fs = require('fs');
 const Promise = require('bluebird');
-const { pgPool } = require('./index');
+const { pgPool, dbInitialize } = require('./index');
 
 const seed = async () => {
+  await dbInitialize();
   let result = await pgPool.query(
     `SELECT * 
   FROM products 
