@@ -1,3 +1,8 @@
+const dotenv = require('dotenv');
+const dotenvExpand = require('dotenv-expand');
+const myEnv = dotenv.config();
+dotenvExpand(myEnv);
+
 const generateData = require('./generateData');
 const path = require('path');
 const fs = require('fs');
