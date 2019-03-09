@@ -1,8 +1,6 @@
 const express = require('express');
 const path = require('path');
 const parser = require('body-parser');
-const cors = require('cors');
-const morgan = require('morgan');
 
 const { dbInitialize } = require('../postgresdb/index');
 
@@ -12,7 +10,6 @@ const app = express();
 
 module.exports.initializeApp = async () => {
   await dbInitialize();
-  app.use(cors());
   app.use(parser.json());
   app.use(parser.urlencoded({ extended: true }));
   app.use(express.static(path.resolve(__dirname, '../client/dist')));
