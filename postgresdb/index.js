@@ -3,12 +3,8 @@ const { Pool } = require('pg');
 const pgPool = new Pool();
 
 module.exports.dbInitialize = async () => {
-  console.log(process.env.PGPORT);
-  console.log(process.env.PGDATABASE);
-  console.log(process.env.PGUSER);
-  console.log(process.env.PGHOST);
-  console.log(process.env.PGPASSWORD);
   let client = await pgPool.connect();
+  console.log('Connected to postgres');
   await client.query(
     `CREATE TABLE IF NOT EXISTS "products" (
       "productId"  SERIAL ,
