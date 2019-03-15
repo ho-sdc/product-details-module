@@ -5,3 +5,5 @@ node_modules
 bundle.js
 data.*
 .env
+deployment/*.json
+deployment/*.sh
